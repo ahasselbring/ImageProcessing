@@ -38,3 +38,16 @@ void ImageTools::storeImage(const std::string& path, const Image& image)
 
   lodepng::encode(path.c_str(), data, image.width, image.height);
 }
+
+bool ImageTools::compare(const Image& image1, const Image& image2)
+{
+  if(image1.width != image2.width || image1.height != image2.height)
+    return false;
+
+  for(unsigned int y = 0; y < image1.height; y++)
+    for(unsigned int x = 0; x < image1.width; x++)
+      if(image1[y][x] != image2[y][x])
+        return false;
+
+  return true;
+}

@@ -13,7 +13,7 @@
 #include "Image.h"
 
 /**
- * @brief This class provides functions to load/store Images from/to files.
+ * @brief This class provides helper functions to handle Images.
  */
 class ImageTools
 {
@@ -30,4 +30,11 @@ public:
    * @param image The Image to store.
    */
   static void storeImage(const std::string& path, const Image& image);
+  /**
+   * Compares to Images for equality.
+   * @param image1 The first operand.
+   * @param image2 The second operand.
+   * @return Whether the two Images are equal.
+   */
+  static bool compare(const Image& image1, const Image& image2);
 };
