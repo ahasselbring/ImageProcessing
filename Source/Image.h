@@ -20,8 +20,7 @@ class Image final
 {
 public:
   /**
-   * Creates an Image and allocates memory.
-   *
+   * @brief Creates an Image and allocates memory.
    * @param width The width of the image (i.e. number of columns).
    * @param height The height of the image (i.e. number of rows).
    * @param aligned Whether the memory must be aligned for SSE/AVX.
@@ -38,8 +37,7 @@ public:
       throw std::runtime_error("Could not allocate aligned memory!");
   }
   /**
-   * Copies an Image.
-   *
+   * @brief Copies an Image.
    * @param other The image that is copied into the new one.
    */
   Image(const Image& other) :
@@ -54,7 +52,7 @@ public:
     std::memcpy(data, other.data, width * height);
   }
   /**
-   * Frees the pixel memory.
+   * @brief Frees the pixel memory.
    */
   ~Image()
   {
@@ -62,8 +60,7 @@ public:
       free(data);
   }
   /**
-   * Accesses a pixel row (mutable).
-   *
+   * @brief Accesses a pixel row (mutable).
    * @param y The row (zero-based) that should be accessed.
    * @return A pointer to the start of the row.
    */
@@ -72,8 +69,7 @@ public:
     return data + y * width;
   }
   /**
-   * Accesses a pixel row (read-only).
-   *
+   * @brief Accesses a pixel row (read-only).
    * @param y The row (zero-based) that should be accessed.
    * @return A pointer to the start of the row.
    */

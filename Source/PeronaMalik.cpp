@@ -19,7 +19,16 @@
 
 #include "PeronaMalik.h"
 
-Image PeronaMalik::apply(const Image& image, float kappa, float dt, unsigned int times, bool isotropic, OptimizationLevel optimizationLevel)
+PeronaMalik::PeronaMalik(float kappa, float dt, unsigned int times, bool isotropic, OptimizationLevel optimizationLevel) :
+  kappa(kappa),
+  dt(dt),
+  times(times),
+  isotropic(isotropic),
+  optimizationLevel(optimizationLevel)
+{
+}
+
+Image PeronaMalik::apply(const Image& image)
 {
   switch(optimizationLevel)
   {

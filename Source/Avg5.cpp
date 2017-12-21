@@ -18,7 +18,12 @@
 
 #include "Avg5.h"
 
-Image Avg5::apply(const Image& image, OptimizationLevel optimizationLevel)
+Avg5::Avg5(OptimizationLevel optimizationLevel) :
+  optimizationLevel(optimizationLevel)
+{
+}
+
+Image Avg5::apply(const Image& image)
 {
   switch (optimizationLevel)
   {

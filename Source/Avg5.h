@@ -19,12 +19,16 @@ class Avg5 final
 {
 public:
   /**
+   * @brief Constructs a filter.
+   * @param optimizationLevel The kind of optimization that should be used.
+   */
+  Avg5(OptimizationLevel optimizationLevel = OptimizationLevel::noOptimization);
+  /**
    * @brief Denoises an image.
    * @param image The image that is denoised.
-   * @param optimizationLevel The kind of optimization that should be used.
    * @return A denoised image.
    */
-  static Image apply(const Image& image, OptimizationLevel optimizationLevel = OptimizationLevel::noOptimization);
+  Image apply(const Image& image);
 private:
   /**
    * @brief Denoises an image.
@@ -35,4 +39,5 @@ private:
    */
   template<bool simd, bool avx>
   static Image applyT(const Image& image);
+  OptimizationLevel optimizationLevel; ///< The kind of optimization that should be used.
 };

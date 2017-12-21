@@ -20,17 +20,16 @@ class Chronometer final
 {
 public:
   /**
-   * Starts a time measurement (stopwatch).
-   *
+   * @brief Starts a time measurement (stopwatch).
    * @param str An identifier for the measurement.
    */
-  Chronometer(const std::string& str);
+  explicit Chronometer(const std::string& str);
   /**
-   * Stops a time measurement and adds the duration to a list.
+   * @brief Stops a time measurement and adds the duration to a list.
    */
   ~Chronometer();
   /**
-   * Prints the measured times.
+   * @brief Prints the measured times.
    */
   static void printStats();
 private:

@@ -20,17 +20,21 @@ class Image;
 class PeronaMalik final
 {
 public:
-  /**
-   * @brief Denoises an image.
-   * @param image The image that is denoised.
+  /*
+   * @brief Constructs a filter.
    * @param kappa The larger, the less the diffusion is blocked at edges.
    * @param dt The step length in the numeric solution of the diffusion equation.
    * @param times The number of iterations (i.e. the solution is evaluated at dt*times).
    * @param isotropic Whether isotropic (true) or anisotropic (false) diffusion tensors should be used.
    * @param optimizationLevel The kind of optimization that should be used.
+   */
+  PeronaMalik(float kappa, float dt, unsigned int times, bool isotropic = false, OptimizationLevel = OptimizationLevel::noOptimization);
+  /**
+   * @brief Denoises an image.
+   * @param image The image that is denoised.
    * @return A denoised image.
    */
-  static Image apply(const Image& image, float kappa, float dt, unsigned int times, bool isotropic = false, OptimizationLevel = OptimizationLevel::noOptimization);
+  Image apply(const Image& image);
 private:
   /**
    * @brief Computes the increment (Euler step) to the image.
@@ -71,4 +75,9 @@ private:
    */
   template<bool isotropic, bool simd, bool avx>
   static Image applyT(const Image& image, float kappa, float dt, unsigned int times);
+  float kappa;                         ///< The larger, the less the diffusion is blocked at edges.
+  float dt;                            ///< The step length in the numeric solution of the diffusion equation.
+  unsigned int times;                  ///< The number of iterations (i.e. the solution is evaluated at dt*times).
+  bool isotropic;                      ///< Whether isotropic (true) or anisotropic (false) diffusion tensors should be used.
+  OptimizationLevel optimizationLevel; ///< The kind of optimization that should be used.
 };

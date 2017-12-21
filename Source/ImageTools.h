@@ -19,19 +19,19 @@ class ImageTools
 {
 public:
   /**
-   * Loads an Image from a file.
+   * @brief Loads an Image from a file.
    * @param path The path from which the Image should be loaded.
    * @return The loaded Image.
    */
   static Image loadImage(const std::string& path);
   /*+
-   * Stores an Image to a file.
+   * @brief Stores an Image to a file.
    * @param path The path where the Image should be stored.
    * @param image The Image to store.
    */
   static void storeImage(const std::string& path, const Image& image);
   /**
-   * Compares to Images for equality.
+   * @brief Compares to Images for equality.
    * @param image1 The first operand.
    * @param image2 The second operand.
    * @return Whether the two Images are equal.
