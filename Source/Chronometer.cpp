@@ -24,7 +24,7 @@ Chronometer::Chronometer(const std::string& str) :
 Chronometer::~Chronometer()
 {
   auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start);
-  runtimes[str].push_back(microseconds.count());
+  runtimes[str].push_back(static_cast<double>(microseconds.count()));
 }
 
 void Chronometer::printStats()

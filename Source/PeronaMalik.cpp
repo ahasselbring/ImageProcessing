@@ -263,8 +263,8 @@ Image PeronaMalik::applyT(const Image& image, float kappa, float dt, unsigned in
         std::uint8_t* dstRow = (*dst)[y];
         for(unsigned int x = 0; x < image.width; x++)
         {
-          float firstDerivativeX = (x != image.width - 1 ? srcRow[x + 1] : 0) - srcRow[x];
-          float firstDerivativeY = (y != image.height - 1 ? nextRow[x] : 0) - srcRow[x];
+          float firstDerivativeX = static_cast<float>((x != image.width - 1 ? srcRow[x + 1] : 0) - srcRow[x]);
+          float firstDerivativeY = static_cast<float>((y != image.height - 1 ? nextRow[x] : 0) - srcRow[x]);
 
           float scaledFirstDerivativeX, scaledFirstDerivativeY;
 
@@ -295,7 +295,7 @@ Image PeronaMalik::applyT(const Image& image, float kappa, float dt, unsigned in
             newVal = 0;
           else if(newVal > 255)
             newVal = 255;
-          dstRow[x] = newVal;
+          dstRow[x] = static_cast<std::uint8_t>(newVal);
 
           lastScaledFirstDerivativeX = scaledFirstDerivativeX;
           cache[x] = scaledFirstDerivativeY;

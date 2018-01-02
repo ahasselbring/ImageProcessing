@@ -31,13 +31,13 @@ int main(int argc, char* argv[])
     {
       if(++i == argc)
         return EXIT_FAILURE;
-      kappa = atof(argv[i]);
+      kappa = static_cast<float>(atof(argv[i]));
     }
     else if(!strcmp(argv[i], "-dt"))
     {
       if(++i == argc)
         return EXIT_FAILURE;
-      dt = atof(argv[i]);
+      dt = static_cast<float>(atof(argv[i]));
     }
     else if(!strcmp(argv[i], "-times"))
     {

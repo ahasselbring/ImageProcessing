@@ -24,7 +24,7 @@ Image ImageTools::loadImage(const std::string& path, ImageFormat format)
     case ImageFormat::PNG:
       for(unsigned int y = 0; y < height; y++)
         for(unsigned int x = 0; x < width; x++)
-          result[y][x] = clamp(0.299 * data[(y * width + x) * 4] + 0.587 * data[(y * width + x) * 4 + 1] + 0.114 * data[(y * width + x) * 4 + 2] + 0.5);
+          result[y][x] = clamp(static_cast<int>(0.299 * data[(y * width + x) * 4] + 0.587 * data[(y * width + x) * 4 + 1] + 0.114 * data[(y * width + x) * 4 + 2] + 0.5));
       break;
     case ImageFormat::YCbCr:
       for(unsigned int y = 0; y < height; y++)
