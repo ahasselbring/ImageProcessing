@@ -17,7 +17,8 @@ Image ImageTools::loadImage(const std::string& path, ImageFormat format)
 {
   std::vector<unsigned char> data;
   unsigned int width, height;
-  lodepng::decode(data, width, height, path.c_str());
+  if(lodepng::decode(data, width, height, path.c_str()) != 0)
+    throw std::runtime_error("Could not read image!");
   Image result(width, height, (width % 32) == 0);
   switch(format)
   {
@@ -49,7 +50,8 @@ void ImageTools::storeImage(const std::string& path, const Image& image)
       data[(y * image.width + x) * 4 + 3] = 255;
     }
 
-  lodepng::encode(path.c_str(), data, image.width, image.height);
+  if(lodepng::encode(path.c_str(), data, image.width, image.height) != 0)
+    throw std::runtime_error("Could not write image!");
 }
 
 bool ImageTools::compare(const Image& image1, const Image& image2)
