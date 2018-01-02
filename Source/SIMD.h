@@ -10,6 +10,10 @@
 
 #ifdef _WIN32
 #include <intrin.h>
+
+#define ALWAYSINLINE __forceinline
 #else
 #include <x86intrin.h>
+
+#define ALWAYSINLINE inline __attribute__((always_inline))
 #endif

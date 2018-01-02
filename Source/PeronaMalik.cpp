@@ -51,7 +51,7 @@ Image PeronaMalik::apply(const Image& image)
 }
 
 template<bool isotropic>
-__always_inline void PeronaMalik::diffusionSSE(__m128i firstDerivativeXi, __m128i firstDerivativeYi, __m128i& res, __m128 kappaSqrVec, __m128 dtVec, __m128& lastScaledFirstDerivativeX, float*& cacheptr)
+ALWAYSINLINE void PeronaMalik::diffusionSSE(__m128i firstDerivativeXi, __m128i firstDerivativeYi, __m128i& res, __m128 kappaSqrVec, __m128 dtVec, __m128& lastScaledFirstDerivativeX, float*& cacheptr)
 {
   __m128 scaledFirstDerivativeX, scaledFirstDerivativeY;
   __m128 firstDerivativeX = _mm_cvtepi32_ps(firstDerivativeXi), firstDerivativeY = _mm_cvtepi32_ps(firstDerivativeYi);
@@ -84,7 +84,7 @@ __always_inline void PeronaMalik::diffusionSSE(__m128i firstDerivativeXi, __m128
 }
 
 template<bool isotropic>
-__always_inline void PeronaMalik::diffusionAVX(__m256i firstDerivativeXi, __m256i firstDerivativeYi, __m256i& res, __m256 kappaSqrVec, __m256 dtVec, __m256& lastScaledFirstDerivativeX, float*& cacheptr)
+ALWAYSINLINE void PeronaMalik::diffusionAVX(__m256i firstDerivativeXi, __m256i firstDerivativeYi, __m256i& res, __m256 kappaSqrVec, __m256 dtVec, __m256& lastScaledFirstDerivativeX, float*& cacheptr)
 {
   __m256 scaledFirstDerivativeX, scaledFirstDerivativeY;
   __m256 firstDerivativeX = _mm256_cvtepi32_ps(firstDerivativeXi), firstDerivativeY = _mm256_cvtepi32_ps(firstDerivativeYi);
