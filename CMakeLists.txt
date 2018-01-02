@@ -22,7 +22,9 @@ set(SOURCES
 
 add_executable(filters ${SOURCES})
 target_include_directories(filters SYSTEM PRIVATE 3rdParty)
-target_compile_options(filters PRIVATE -march=native -Wall -Wextra -pedantic)
+if((CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
+  target_compile_options(filters PRIVATE -march=native -Wall -Wextra -pedantic)
+endif()
 set_target_properties(filters
   PROPERTIES
   CXX_STANDARD 14
