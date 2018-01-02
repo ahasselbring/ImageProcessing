@@ -7,11 +7,11 @@
  */
 
 #include <cstdint>
-#include <cstdlib>
 #include <cstring>
 #include <limits>
 #include <stdexcept>
 
+#include "AlignedMemory.h"
 #include "Chronometer.h"
 #include "Image.h"
 #include "SIMD.h"
@@ -127,8 +127,8 @@ Image PeronaMalik::applyT(const Image& image, float kappa, float dt, unsigned in
   Image result1(image.width, image.height, true);
   Image result2(image.width, image.height, true);
 
-  float* cache = nullptr;
-  if(posix_memalign(reinterpret_cast<void**>(&cache), 32, image.width * sizeof(float)) != 0)
+  float* cache = static_cast<float*>(AlignedMemory::alloc(image.width * sizeof(float), 32));
+  if(cache == nullptr)
     throw std::runtime_error("Could not allocate aligned memory!");
 
   const float kappaSqr = kappa * kappa;
@@ -309,7 +309,7 @@ Image PeronaMalik::applyT(const Image& image, float kappa, float dt, unsigned in
 
   _MM_SET_ROUNDING_MODE(roundingMode);
 
-  free(cache);
+  AlignedMemory::free(cache);
 
   return *src;
 }

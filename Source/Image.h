@@ -9,9 +9,10 @@
 #pragma once
 
 #include <cstdint>
-#include <cstdlib>
 #include <cstring>
 #include <stdexcept>
+
+#include "AlignedMemory.h"
 
 /**
  * @brief This class is a container for grayscale / single channel images.
@@ -33,7 +34,7 @@ public:
   {
     if(aligned && (width % 32) != 0)
       throw std::runtime_error("The given width makes it impossible for this image to be properly aligned!");
-    if(posix_memalign(reinterpret_cast<void**>(&data), 32, width * height) != 0)
+    if((data = static_cast<std::uint8_t*>(AlignedMemory::alloc(width * height, 32))) == nullptr)
       throw std::runtime_error("Could not allocate aligned memory!");
   }
   /**
@@ -46,7 +47,7 @@ public:
     aligned(other.aligned),
     data(nullptr)
   {
-    if(posix_memalign(reinterpret_cast<void**>(&data), 32, width * height) != 0)
+    if((data = static_cast<std::uint8_t*>(AlignedMemory::alloc(width * height, 32))) == nullptr)
       throw std::runtime_error("Could not allocate aligned memory!");
 
     std::memcpy(data, other.data, width * height);
@@ -57,7 +58,7 @@ public:
   ~Image()
   {
     if(data != nullptr)
-      free(data);
+      AlignedMemory::free(data);
   }
   /**
    * @brief Accesses a pixel row (mutable).

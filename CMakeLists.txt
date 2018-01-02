@@ -4,6 +4,8 @@ project(ImageProcessing)
 set(SOURCES
   3rdParty/lodepng/lodepng.cpp
   3rdParty/lodepng/lodepng.h
+  Source/AlignedMemory.cpp
+  Source/AlignedMemory.h
   Source/Avg5.cpp
   Source/Avg5.h
   Source/Chronometer.cpp

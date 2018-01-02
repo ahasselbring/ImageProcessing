@@ -7,10 +7,10 @@
  */
 
 #include <cstdint>
-#include <cstdlib>
 #include <cstring>
 #include <stdexcept>
 
+#include "AlignedMemory.h"
 #include "Chronometer.h"
 #include "Image.h"
 #include "SIMD.h"
@@ -46,8 +46,8 @@ Image Avg5::applyT(const Image& image)
 
   Image result(image.width, image.height, true);
 
-  std::uint8_t* zerow = nullptr;
-  if(posix_memalign(reinterpret_cast<void**>(&zerow), 32, image.width) != 0)
+  std::uint8_t* zerow = static_cast<std::uint8_t*>(AlignedMemory::alloc(image.width, 32));
+  if(zerow == nullptr)
     throw std::runtime_error("Could not allocate aligned memory!");
   std::memset(zerow, 0, image.width);
 
@@ -172,7 +172,7 @@ Image Avg5::applyT(const Image& image)
     }
   }
 
-  free(zerow);
+  AlignedMemory::free(zerow);
 
   return result;
 }
