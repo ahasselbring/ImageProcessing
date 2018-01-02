@@ -15,6 +15,7 @@ set(SOURCES
   Source/OptimizationLevel.h
   Source/PeronaMalik.cpp
   Source/PeronaMalik.h
+  Source/SIMD.h
 )
 
 add_executable(filters ${SOURCES})

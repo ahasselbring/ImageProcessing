@@ -11,10 +11,9 @@
 #include <cstring>
 #include <stdexcept>
 
-#include <x86intrin.h>
-
 #include "Chronometer.h"
 #include "Image.h"
+#include "SIMD.h"
 
 #include "Avg5.h"
 

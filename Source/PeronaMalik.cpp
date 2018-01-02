@@ -12,10 +12,9 @@
 #include <limits>
 #include <stdexcept>
 
-#include <x86intrin.h>
-
 #include "Chronometer.h"
 #include "Image.h"
+#include "SIMD.h"
 
 #include "PeronaMalik.h"
 
