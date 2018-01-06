@@ -14,6 +14,8 @@ set(SOURCES
   Source/ImageTools.cpp
   Source/ImageTools.h
   Source/IPSLEngine/IPSLAbstractSyntaxTree.h
+  Source/IPSLEngine/IPSLAbstractSyntaxTreeBuilder.cpp
+  Source/IPSLEngine/IPSLAbstractSyntaxTreeBuilder.h
   Source/IPSLEngine/IPSLBlackboard.h
   Source/IPSLEngine/IPSLError.cpp
   Source/IPSLEngine/IPSLError.h
