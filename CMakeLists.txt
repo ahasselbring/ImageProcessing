@@ -14,6 +14,8 @@ set(SOURCES
   Source/ImageTools.cpp
   Source/ImageTools.h
   Source/IPSLEngine/IPSLBlackboard.h
+  Source/IPSLEngine/IPSLError.cpp
+  Source/IPSLEngine/IPSLError.h
   Source/IPSLEngine/IPSLLocation.h
   Source/IPSLEngine/IPSLToken.h
   Source/Main.cpp

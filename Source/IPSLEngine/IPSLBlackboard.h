@@ -10,6 +10,7 @@
 
 #include <string>
 
+#include "IPSLError.h"
 #include "IPSLToken.h"
 
 /**
@@ -31,4 +32,5 @@ public:
   std::string inputName;                     ///< The name of the input stream.
   std::string source;                        ///< The source code.
   IPSLTokenSequence tokenSequence;           ///< The token sequence (only valid after lexical analysis).
+  IPSLErrorList errorList;                   ///< A list of errors.
 };
