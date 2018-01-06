@@ -13,6 +13,7 @@ set(SOURCES
   Source/Image.h
   Source/ImageTools.cpp
   Source/ImageTools.h
+  Source/IPSLEngine/IPSLAbstractSyntaxTree.h
   Source/IPSLEngine/IPSLBlackboard.h
   Source/IPSLEngine/IPSLError.cpp
   Source/IPSLEngine/IPSLError.h
