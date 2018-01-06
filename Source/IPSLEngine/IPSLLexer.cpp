@@ -19,6 +19,7 @@ void IPSLLexer::analyze(IPSLBlackboard& blackboard)
 {
   std::string currentToken;
   unsigned int row = 1, column = 1, index = 0;
+  IPSLLocation currentLocation(row, column, index);
   State state = State::normal;
   const auto& source = blackboard.source;
   auto& tokenSequence = blackboard.tokenSequence;
@@ -30,6 +31,7 @@ void IPSLLexer::analyze(IPSLBlackboard& blackboard)
     {
 tryAgain:
       case State::normal:
+        currentLocation = location;
         if(c == '-')
         {
           currentToken += c;
@@ -50,13 +52,13 @@ tryAgain:
         else if(c == ';')
           state = State::expectComment;
         else if(c == '(')
-          tokenSequence.emplace_back(IPSLToken::Type::lParenthesis);
+          tokenSequence.emplace_back(IPSLToken::Type::lParenthesis, currentLocation);
         else if(c == ')')
-          tokenSequence.emplace_back(IPSLToken::Type::rParenthesis);
+          tokenSequence.emplace_back(IPSLToken::Type::rParenthesis, currentLocation);
         else if(c == '{')
-          tokenSequence.emplace_back(IPSLToken::Type::lBrace);
+          tokenSequence.emplace_back(IPSLToken::Type::lBrace, currentLocation);
         else if(c == '}')
-          tokenSequence.emplace_back(IPSLToken::Type::rBrace);
+          tokenSequence.emplace_back(IPSLToken::Type::rBrace, currentLocation);
         else if(std::isspace(c))
           ;
         else
@@ -68,13 +70,13 @@ tryAgain:
         {
           if(currentToken[0] == '-')
           {
-            tokenSequence.emplace_back(IPSLToken::Type::symbol);
+            tokenSequence.emplace_back(IPSLToken::Type::symbol, currentLocation);
             tokenSequence.back().value = currentToken;
           }
           else
           {
             assert(std::isdigit(currentToken[0]));
-            tokenSequence.emplace_back(IPSLToken::Type::number);
+            tokenSequence.emplace_back(IPSLToken::Type::number, currentLocation);
             tokenSequence.back().value = currentToken;
           }
           currentToken.clear();
@@ -87,7 +89,7 @@ tryAgain:
       case State::expectNumber:
         if(!std::isdigit(c))
         {
-          tokenSequence.emplace_back(IPSLToken::Type::number);
+          tokenSequence.emplace_back(IPSLToken::Type::number, currentLocation);
           tokenSequence.back().value = currentToken;
           currentToken.clear();
           state = State::normal;
@@ -98,7 +100,7 @@ tryAgain:
       case State::expectSymbol:
         if(!isSymbolCharacter(c))
         {
-          tokenSequence.emplace_back(IPSLToken::Type::symbol);
+          tokenSequence.emplace_back(IPSLToken::Type::symbol, currentLocation);
           tokenSequence.back().value = currentToken;
           currentToken.clear();
           state = State::normal;
@@ -109,7 +111,7 @@ tryAgain:
       case State::expectString:
         if(c == '"')
         {
-          tokenSequence.emplace_back(IPSLToken::Type::string);
+          tokenSequence.emplace_back(IPSLToken::Type::string, currentLocation);
           tokenSequence.back().value = currentToken;
           currentToken.clear();
           state = State::normal;
@@ -138,7 +140,7 @@ tryAgain:
       case State::expectComment:
         if(c == '\n')
         {
-          tokenSequence.emplace_back(IPSLToken::Type::comment);
+          tokenSequence.emplace_back(IPSLToken::Type::comment, currentLocation);
           tokenSequence.back().value = currentToken;
           currentToken.clear();
           state = State::normal;

@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 
+#include "IPSLLocation.h"
+
 /**
  * @brief This class represents a token in the IPS language.
  */
@@ -32,14 +34,16 @@ public:
     rBrace,       ///< A right brace token.
     numOfTypes    ///< The number of token types.
   };
-  Type type;         ///< The type of the token.
-  std::string value; ///< The value of the token (only valid for numbers, symbols, strings and comments).
+  Type type;             ///< The type of the token.
+  IPSLLocation location; ///< The location of the token in the source code.
+  std::string value;     ///< The value of the token (only valid for numbers, symbols, strings and comments).
   /**
    * @brief Constructs an IPSLToken.
    * @param type The type of the token.
    */
-  explicit IPSLToken(Type type) :
-    type(type)
+  IPSLToken(Type type, const IPSLLocation& location) :
+    type(type),
+    location(location)
   {
   }
 };
