@@ -22,6 +22,8 @@ set(SOURCES
   Source/IPSLEngine/IPSLLexer.cpp
   Source/IPSLEngine/IPSLLexer.h
   Source/IPSLEngine/IPSLLocation.h
+  Source/IPSLEngine/IPSLParser.cpp
+  Source/IPSLEngine/IPSLParser.h
   Source/IPSLEngine/IPSLToken.h
   Source/Main.cpp
   Source/OptimizationLevel.h

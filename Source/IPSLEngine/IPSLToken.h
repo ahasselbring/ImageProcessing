@@ -46,6 +46,14 @@ public:
     location(location)
   {
   }
+  /**
+   * @brief Returns an invalid token.
+   * @return An invalid token.
+   */
+  static IPSLToken invalid()
+  {
+    return IPSLToken(Type::numOfTypes, IPSLLocation(0, 0, 0));
+  }
 };
 
 using IPSLTokenSequence = std::vector<IPSLToken>;
