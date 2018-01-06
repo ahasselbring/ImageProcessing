@@ -16,6 +16,8 @@ set(SOURCES
   Source/IPSLEngine/IPSLBlackboard.h
   Source/IPSLEngine/IPSLError.cpp
   Source/IPSLEngine/IPSLError.h
+  Source/IPSLEngine/IPSLLexer.cpp
+  Source/IPSLEngine/IPSLLexer.h
   Source/IPSLEngine/IPSLLocation.h
   Source/IPSLEngine/IPSLToken.h
   Source/Main.cpp
