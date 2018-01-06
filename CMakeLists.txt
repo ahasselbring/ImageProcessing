@@ -13,6 +13,7 @@ set(SOURCES
   Source/Image.h
   Source/ImageTools.cpp
   Source/ImageTools.h
+  Source/IPSLEngine/IPSLLocation.h
   Source/IPSLEngine/IPSLToken.h
   Source/Main.cpp
   Source/OptimizationLevel.h
