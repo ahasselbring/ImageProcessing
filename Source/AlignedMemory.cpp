@@ -32,6 +32,6 @@ void AlignedMemory::free(void* ptr)
 #ifdef _WIN32
   _aligned_free(ptr);
 #else
-  free(ptr);
+  std::free(ptr);
 #endif
 }
