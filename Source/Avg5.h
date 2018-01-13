@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Operator.h"
 #include "OptimizationLevel.h"
 
 class Image;
@@ -15,7 +16,7 @@ class Image;
 /**
  * @brief This class implements a denoising filter that takes the average of a pixel and its four neighbors.
  */
-class Avg5 final
+class Avg5 : public Operator
 {
 public:
   /**
@@ -28,7 +29,7 @@ public:
    * @param image The image that is denoised.
    * @return A denoised image.
    */
-  Image apply(const Image& image);
+  Image apply(const Image& image) override;
 private:
   /**
    * @brief Denoises an image.

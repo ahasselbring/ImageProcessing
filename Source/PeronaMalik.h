@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "Operator.h"
 #include "OptimizationLevel.h"
 #include "SIMD.h"
 
@@ -16,7 +17,7 @@ class Image;
 /**
  * @brief This class implements the Perona Malik diffusion denoising filter.
  */
-class PeronaMalik final
+class PeronaMalik : public Operator
 {
 public:
   /*
@@ -33,7 +34,7 @@ public:
    * @param image The image that is denoised.
    * @return A denoised image.
    */
-  Image apply(const Image& image);
+  Image apply(const Image& image) override;
 private:
   /**
    * @brief Computes the increment (Euler step) to the image.

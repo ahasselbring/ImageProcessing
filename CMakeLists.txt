@@ -26,6 +26,7 @@ set(SOURCES
   Source/IPSLEngine/IPSLParser.h
   Source/IPSLEngine/IPSLToken.h
   Source/Main.cpp
+  Source/Operator.h
   Source/OptimizationLevel.h
   Source/PeronaMalik.cpp
   Source/PeronaMalik.h
