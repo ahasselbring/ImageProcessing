@@ -17,6 +17,8 @@ set(SOURCES
   Source/IPSLEngine/IPSLAbstractSyntaxTreeBuilder.cpp
   Source/IPSLEngine/IPSLAbstractSyntaxTreeBuilder.h
   Source/IPSLEngine/IPSLBlackboard.h
+  Source/IPSLEngine/IPSLEnvironment.cpp
+  Source/IPSLEngine/IPSLEnvironment.h
   Source/IPSLEngine/IPSLError.cpp
   Source/IPSLEngine/IPSLError.h
   Source/IPSLEngine/IPSLLexer.cpp
@@ -25,6 +27,8 @@ set(SOURCES
   Source/IPSLEngine/IPSLParser.cpp
   Source/IPSLEngine/IPSLParser.h
   Source/IPSLEngine/IPSLToken.h
+  Source/IPSLEngine/IPSLValue.cpp
+  Source/IPSLEngine/IPSLValue.h
   Source/Main.cpp
   Source/Operator.h
   Source/OptimizationLevel.h
